@@ -21,25 +21,35 @@ def get_data(query, city_name=None):
     elif query == "Get current data":
 
         api = "9b833c0ea6426b70902aa7a4b1da285c"
-        url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}"
+        url = "https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={api}"
         response = requests.get(url)
         x = response.json()
+        city_name_temp = city_name
+        city_name = city_name.lower()
 
-        weatherforecast_url = "./data/WeatherForecastDaily.xls"
-        df_weather = pd.read_excel(
-            weatherforecast_url, sheet_name=sheets_name[city_name])
+        weatherforecast_url = "http://localhost:5500/api/weather/DailyWeatherPredictions/"+city_name
+        response = requests.get(weatherforecast_url)
+        json_data = response.json()
+
+        df_weather = pd.json_normalize(json_data[city_name])
+
+        df_weather['Predictions'] = pd.to_numeric(df_weather['Predictions'])
         df_weather['Predictions'] = np.round(
             df_weather['Predictions']).astype(int)
 
-        aqiforecast_url = "./data/AQI_forecast_DAILY.xls"
-        df_aqi = pd.read_excel(
-            aqiforecast_url, sheet_name=sheets_name[city_name])
+        aqiforecast_url = "http://localhost:5500/api/aqi/DailyAQIPredictions/"+city_name
+        response = requests.get(aqiforecast_url)
+        json_data = response.json()
+
+        df_aqi = pd.json_normalize(json_data[city_name])
+        df_aqi['Predictions'] = pd.to_numeric(df_aqi['Predictions'])
+
         df_aqi['Predictions'] = np.round(df_aqi['Predictions']).astype(int)
 
         forecast_dates = df_weather['Date'].to_list()[:7]
         aqi_forecast = df_aqi['Predictions'].to_list()[:7]
         weather_forecast = df_weather['Predictions'].to_list()[:7]
-        current_aqi = get_current_aqi(city_name)
+        current_aqi = get_current_aqi(city_name_temp)
         for i in range(len(forecast_dates)):
             date = pd.to_datetime(forecast_dates[i], format="%Y-%m-%d")
             date = date.day_name()
@@ -76,8 +86,11 @@ def get_data(query, city_name=None):
     #     return df_aqi
 
     elif query == "dashboard-weather":
-        aqi_url = "./data/WeatherHistoryDaily.xls"
-        df_weather = pd.read_excel(aqi_url, sheet_name=city_name)
+        aqi_url = "http://localhost:5500/api/weather/HistoryDailyWeather/"+city_name
+        response = requests.get(aqi_url)
+        json_data = response.json()
+        df_weather = pd.DataFrame(json_data)
+
         df_weather.rename(columns={'Date': 'DATE'}, inplace=True)
         df_weather['DATE'] = pd.to_datetime(df_weather['DATE'])
 

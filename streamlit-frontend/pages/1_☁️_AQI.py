@@ -69,8 +69,8 @@ def print_3(stat, names):
 @st.cache_data
 def display_daily(city):
 
-    history_url = "../data/AQI_history_daily.xlsx"
-    future_url = "../data/AQI_forecast_DAILY.xls"
+    history_url = "./data/AQI_history_daily.xlsx"
+    future_url = "./data/AQI_forecast_DAILY.xls"
     df_hist = pd.read_excel(history_url, sheet_name=city)
 
     df_hist['DATE'] = pd.to_datetime(df_hist['DATE'])
@@ -140,8 +140,8 @@ def display_daily(city):
 
 @st.cache_data
 def display_monthly(city):
-    history_url = "../data/AQI_history_MONTHYL.xlsx"
-    future_url = "../data/AQI_Forecast_Monthly.xlsx"
+    history_url = "./data/AQI_history_MONTHYL.xlsx"
+    future_url = "./data/AQI_Forecast_Monthly.xlsx"
     df_hist = pd.read_excel(history_url, sheet_name=city)
 
     df_hist['DATE'] = pd.to_datetime(df_hist['DATE'])

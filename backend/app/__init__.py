@@ -4,4 +4,3 @@ load_dotenv('.env')
 
 app = Flask(__name__, template_folder='../templates',
             static_folder='../static')
-app.config['MONGO_URI'] = app.config['MONGO_URI']

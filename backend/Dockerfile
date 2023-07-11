@@ -18,5 +18,5 @@ COPY . /app
 #Change Working Directory to app directory
 WORKDIR /app
 
-#Run the application on port 8080
+#Run the application on port 5500
 ENTRYPOINT ["python3","index.py"]

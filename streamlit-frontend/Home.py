@@ -35,6 +35,8 @@ def get_statistics(df, feature):
     st.header("Top 3 Months with lowest {}".format(feature))
     print_top3(sorted_asc)
 
+# TO BE FIXED
+
 
 def display_model_details(city, forecast, feature):
     if feature == 'AQI':
@@ -143,18 +145,21 @@ def combined_linegraph(df, feature):
 
 def display_history_and_forecasted(city, feature, forecast_df):
     if feature == 'AQI':
-        future_url = "../data/AQI_Forecast_Monthly.xlsx"
+        future_url = "./data/AQI_history_MONTHYL.xlsx"
         history_city = pd.read_excel(future_url, sheet_name=city)
         history_city = history_city.rename(columns={'DATE': 'Date'})
+        history_city['Date'] = pd.to_datetime(history_city['Date'])
         forecast_df['Date'] = pd.to_datetime(forecast_df['Date'])
+        print(forecast_df, history_city)
         df_res = pd.merge(history_city, forecast_df, on='Date', how='outer')
+        print(df_res)
         combined_linegraph(df_res, 'AQI')
         with st.expander("Inference", expanded=True):
             st.write("""
                 The chart above shows the plot of the historical data of AQI values and the forecasted values for the 12 months of 2023. The blue color line shows the historical data and the green line shows the forecasted values
             """)
     else:
-        future_url = '../hackathon_forecasts_output/Heatwave_Forecast.xlsx'
+        future_url = './hackathon_forecasts_output/Heatwave_Forecast.xlsx'
         forecast_df = pd.read_excel(future_url, sheet_name=city)
         forecast_df['Date'] = pd.to_datetime(forecast_df['Date'])
         history_city['Date'] = pd.to_datetime(history_city['Date'])
@@ -163,7 +168,7 @@ def display_history_and_forecasted(city, feature, forecast_df):
 
 
 def display_aqi(city, slider_col):
-    future_url = "../data/AQI_Forecast_Monthly.xlsx"
+    future_url = "./data/AQI_Forecast_Monthly.xlsx"
     aqi_city = pd.read_excel(future_url, sheet_name=city)
 
     aqi_city = aqi_city[aqi_city['Date'] < '2024-01-01']
@@ -188,7 +193,7 @@ def display_aqi(city, slider_col):
 
     st.markdown("<hr>", unsafe_allow_html=True)
     get_statistics(aqi_city, 'AQI')
-    display_model_details(city, aqi_city, 'AQI')
+    # display_model_details(city, aqi_city, 'AQI')
     display_history_and_forecasted(city, 'AQI', aqi_city)
 
 
@@ -197,7 +202,7 @@ def load_prophet(city):
     with open('./models/{}_model.json'.format(city), 'r') as fin:
         m = model_from_json(fin.read())
 
-    future_url = "../data/AQI_Forecast_Monthly.xlsx"
+    future_url = "./data/AQI_Forecast_Monthly.xlsx"
     forecasts = pd.read_excel(future_url, sheet_name=city)
     forecasts.drop(list(forecasts.columns)[0], axis=1, inplace=True)
 
@@ -218,7 +223,7 @@ def show_geomap():
 
 
 def display_heatwave(city, slider_col):
-    future_url = '../hackathon_forecasts_output/Heatwave_Forecast.xlsx'
+    future_url = './hackathon_forecasts_output/Heatwave_Forecast.xlsx'
     weather_city = pd.read_excel(future_url, sheet_name=city)
     weather_city = weather_city[(
         weather_city['Date'] < '2024-01-01') & (weather_city['Date'] > '2022-12-01')]
@@ -262,7 +267,7 @@ def display_heatwave(city, slider_col):
     st.markdown("<hr>", unsafe_allow_html=True)
     st.subheader("Prophet Model Forecasts")
     load_prophet(city)
-    display_model_details(city, weather_city, 'Weather')
+    # display_model_details(city, weather_city, 'Weather')
     show_geomap()
 
 
@@ -303,4 +308,4 @@ if options == 'AQI':
     display_aqi(city, main_c2)
 else:
     display_heatwave(city, main_c2)
-utils.get_initial()
+# utils.get_initial()

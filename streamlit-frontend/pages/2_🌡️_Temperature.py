@@ -48,8 +48,8 @@ def print_3(stat, names):
 
 def display_daily(city):
 
-    history_url = "../data/WeatherHistoryDaily.xls"
-    future_url = "../data/WeatherForecastDaily.xls"
+    history_url = "./data/WeatherHistoryDaily.xls"
+    future_url = "./data/WeatherForecastDaily.xls"
     df_hist = pd.read_excel(history_url, sheet_name=city)
     # df_hist['DATE']=datetime.strptime(df_hist['DATE'],'%Y-%m-%d').toDate()
     df_hist['DATE'] = pd.to_datetime(df_hist['DATE'])
@@ -123,8 +123,8 @@ def display_daily(city):
 
 def display_monthly(city):
 
-    history_url = "../data/WeatherHistoryMonthly.xls"
-    future_url = "../data/WeatherForecastMonthly.xls"
+    history_url = "./data/WeatherHistoryMonthly.xls"
+    future_url = "./data/WeatherForecastMonthly.xls"
     df_hist = pd.read_excel(history_url, sheet_name=city)
     # df_hist['DATE']=datetime.strptime(df_hist['DATE'],'%Y-%m-%d').toDate()
     df_hist.rename(columns={'DATE': 'Date'}, inplace=True)

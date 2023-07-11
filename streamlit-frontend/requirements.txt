@@ -9,3 +9,4 @@ prophet
 scipy
 statsmodels
 openpyxl
+xlrd

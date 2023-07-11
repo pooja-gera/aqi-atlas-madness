@@ -13,7 +13,6 @@ st.set_page_config(page_title='About Us',
 st.markdown("<h1 style='text-align: center; color: black;font-size:50px'>ATLAS MADNESS HACK</h1><hr>",
             unsafe_allow_html=True)
 
-st.header("START UP PLAN")
 st.markdown("<hr>", unsafe_allow_html=True)
 st.subheader("OUR APPLICATION'S MAJOR FEATURES")
 st.write("""
@@ -32,16 +31,12 @@ st.write("""
     5. Maintain a good quality of the data and provide paid reliable data source endpoints to fetch the reliable data maintained. 
 """)
 st.markdown("<hr>", unsafe_allow_html=True)
-st.header("ARCHITECTURE DIAGRAM")
-arch = Image.open('./images/architecture.png')
-arch.resize((300, 400))
-st.image(arch, caption="Architecture Diagram")
 st.header("ABOUT US - TEAM APK ;)")
 st.markdown("<hr>", unsafe_allow_html=True)
 user1_col1, padding, user1_col2 = st.columns((6, 1, 15), gap="small")
 with user1_col1:
     ashish = Image.open('./images/arjun.jpeg')
-    ashish = ashish.resize((400, 500))
+    # ashish = ashish.resize((400, 500))
     st.image(ashish, caption="Team Member 1 - Arjun")
 with user1_col2:
     st.header("Arjun Dhawan")
@@ -55,11 +50,11 @@ st.markdown("<hr>", unsafe_allow_html=True)
 user2_col1, padding, user2_col2 = st.columns((15, 1, 6), gap="small")
 with user2_col2:
     jega = Image.open('./images/kt.jpeg')
-    jega = jega.resize((400, 500))
+    # jega = jega.resize((400, 500))
     st.image(jega, caption="Team Member 2 - Karan")
 with user2_col1:
     st.header("Karan Taneja")
-    st.write("""Hello This is Mathana Mathav, from Thapar University\n
+    st.write("""Hello This is Karan Taneja, from Thapar University\n
     WORK EXPERIENCE   : Intern at INDMoney\n
     GITHUB PROFILE    : https://www.github.com/karantaneja01\n
     LINKEDIN URL      : https://www.linkedin.com/in/karantaneja01/\n
@@ -68,7 +63,7 @@ st.markdown("<hr>", unsafe_allow_html=True)
 user3_col1, padding, user3_col2 = st.columns((6, 1, 15), gap="small")
 with user3_col1:
     jega = Image.open('./images/pooja.jpg')
-    jega = jega.resize((400, 500))
+    # jega = jega.resize((400, 500))
     st.image(jega, caption="Team Member 3 - Pooja")
 with user3_col2:
     st.header("Pooja Gera")
