@@ -1,7 +1,7 @@
 # Libraries
 import pandas as pd
 import requests
-from utils import bargraph, linegraph, get_request_data, get_current_aqi
+from utils import bargraph, linegraph, get_current_aqi
 import numpy as np
 import streamlit as st
 sheets_name = {'Adilabad': 0,
