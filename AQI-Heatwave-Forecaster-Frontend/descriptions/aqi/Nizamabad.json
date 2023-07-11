@@ -1,0 +1,5 @@
+{
+    "model": "Prophet",
+    "evalutation_description": "The RMSE scores for the Prophet model on the test dataset was very low (4.24 approx) and we were also able to get a good accuracy score of 94.18% for the test data",
+    "model_usage_reasoning": "Prophet is a good choice for forecasting time series data with complex seasonal patterns and changes in trend over time. It is easy to use and customize, and is able to produce accurate and reliable forecasts with minimal input from the user. We implemented most of the time series models and LSTM RNN models and compared their RMSE scores on the test set for AQI prediction for Nizamabad and found that Prophet model gave the best results. Also this model was able to capture the trends of the AQI data properly and generalize as well."
+}

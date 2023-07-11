@@ -1,0 +1,5 @@
+{
+    "model": "HoltWinters",
+    "evalutation_description": "The RMSE scores for the Prophet model on the test dataset was very low (13.15 approx) and we were also able to get a good accuracy score of 84.04% for the test data",
+    "model_usage_reasoning": "The advantage of Holt's Winter model is that it considers linear exponential smoothing for forecasting data that has a trend and and smoothing techniques to include seasonality as well while making the predictions. We implemented most of the time series models and LSTM RNN models and compared their RMSE scores on the test set for AQI prediction for Karimnagar and found that Holts Winter model gave the best results. Also this model was able to capture the trends of the AQI data properly and generalize as well."
+}

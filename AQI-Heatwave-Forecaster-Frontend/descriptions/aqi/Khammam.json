@@ -1,0 +1,5 @@
+{
+    "model": "CES",
+    "evalutation_description": "The RMSE scores for the Prophet model on the test dataset was very low (15.38 approx) and we were also able to get a good accuracy score of 82.36% for the test data",
+    "model_usage_reasoning": "CES (Classical Exponential Smoothing) time series models are a type of forecasting method that uses historical data to make predictions about future values. They are typically used when the data being analyzed has a consistent pattern of growth or decay over time, with little or no seasonality.CES models are particularly useful when the data being analyzed is smooth and does not exhibit any major fluctuations or irregularities. They can be used to forecast a wide range of time series data, including economic indicators, sales figures, and other types of numerical data. We implemented most of the time series models and LSTM RNN models and compared their RMSE scores on the test set for AQI prediction for Khammam and found that CES model gave the best results. Also this model was able to capture the trends of the AQI data properly and generalize as well."
+}

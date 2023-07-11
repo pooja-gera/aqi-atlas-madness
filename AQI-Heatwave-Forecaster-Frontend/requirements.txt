@@ -1,0 +1,11 @@
+streamlit_card
+pandas
+plotly
+streamlit
+s3fs
+plotly-calplot
+beautifulsoup4
+prophet
+scipy
+statsmodels
+openpyxl
